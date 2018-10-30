@@ -1,0 +1,20 @@
+version: '3'
+services:
+  front-envoy:
+    image: envoyproxy/envoy-alpine:v1.7.0
+    volumes:
+      - ./front_envoy/envoy-config.yaml:/etc/envoy-config.yaml
+    ports:
+      - "8080:80"
+      - "9901:9901"
+    command: "/usr/local/bin/envoy -c /etc/envoy-config.yaml --v2-config-only -l info --service-cluster 'front-envoy' --service-node 'front-envoy' --log-format '[METADATA][%Y-%m-%d %T.%e][%t][%l][%n] %v'"
+
+  service_a:
+    build: service_a/
+    ports:
+    - "8081:8081"
+
+  service_b:
+    build: service_b/
+    ports:
+    - "8082:8082"
