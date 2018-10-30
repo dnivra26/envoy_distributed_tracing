@@ -26,7 +26,7 @@ static_resources:
               name: "envoy.http_connection_manager"
               config:
                 tracing:
-                  operation_name: egress
+                  operation_name: ingress
                 access_log:
                 - name: envoy.file_access_log
                   config:
