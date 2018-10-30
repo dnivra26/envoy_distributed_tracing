@@ -64,10 +64,10 @@ static_resources:
             address: "service_a"
             port_value: 8081
     - name: zipkin
-      connect_timeout: 1s
+      connect_timeout: 0.25s
       type: strict_dns
       lb_policy: round_robin
       hosts:
       - socket_address:
-          address: zipkin.zipkin
+          address: zipkin
           port_value: 9411

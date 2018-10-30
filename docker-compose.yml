@@ -18,3 +18,8 @@ services:
     build: service_b/
     ports:
     - "8082:8082"
+
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
