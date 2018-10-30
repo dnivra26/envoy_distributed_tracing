@@ -61,8 +61,8 @@ static_resources:
       hosts:
         - 
           socket_address: 
-            address: "service_a"
-            port_value: 8081
+            address: "service_a_envoy"
+            port_value: 8786
     - name: zipkin
       connect_timeout: 0.25s
       type: strict_dns

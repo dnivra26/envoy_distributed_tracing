@@ -11,7 +11,7 @@ import (
 func handler(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, "Calling Service B")
-	resp, err := http.Get("http://service_b:8082/")
+	resp, err := http.Get("http://service_a_envoy:8788/")
 
 	if err != nil {
 		fmt.Printf("%s", err)

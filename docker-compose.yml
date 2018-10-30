@@ -9,6 +9,15 @@ services:
       - "9901:9901"
     command: "/usr/local/bin/envoy -c /etc/envoy-config.yaml --v2-config-only -l info --service-cluster 'front-envoy' --service-node 'front-envoy' --log-format '[METADATA][%Y-%m-%d %T.%e][%t][%l][%n] %v'"
 
+  service_a_envoy:
+    image: envoyproxy/envoy-alpine:v1.7.0
+    volumes:
+      - ./service_a/envoy-config.yaml:/etc/envoy-config.yaml
+    ports:
+      - "8786:8786"
+      - "8788:8788"
+    command: "/usr/local/bin/envoy -c /etc/envoy-config.yaml --v2-config-only -l info --service-cluster 'service-a' --service-node 'service-a' --log-format '[METADATA][%Y-%m-%d %T.%e][%t][%l][%n] %v'"
+
   service_a:
     build: service_a/
     ports:
