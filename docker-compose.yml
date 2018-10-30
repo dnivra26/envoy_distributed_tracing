@@ -23,6 +23,14 @@ services:
     ports:
     - "8081:8081"
 
+  service_b_envoy:
+    image: envoyproxy/envoy-alpine:v1.7.0
+    volumes:
+      - ./service_b/envoy-config.yaml:/etc/envoy-config.yaml
+    ports:
+      - "8789:8789"
+    command: "/usr/local/bin/envoy -c /etc/envoy-config.yaml --v2-config-only -l info --service-cluster 'service-b' --service-node 'service-b' --log-format '[METADATA][%Y-%m-%d %T.%e][%t][%l][%n] %v'"  
+
   service_b:
     build: service_b/
     ports:
